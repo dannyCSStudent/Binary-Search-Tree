@@ -48,6 +48,48 @@ class BinaryTree {
           this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
         }
     }
+    delete(value, root = this.root) {
+        if (root === null) {
+            return root;
+        }
+        if (value < root.value) {
+            root.left = this.delete(value, root.left);
+        } else if (value > root.value) {
+            root.right = this.delete(value, root.right);
+        } else {
+            if (root.left === null) {
+                return root.right;
+            } else if (root.right === null) {
+                return root.left;
+            } 
+            root.value = this.minValue(root.right)
+            root.right = this.delete(root.value, root.right)
+        }
+        return root;
+    }
+
+    minValue(root) {
+        let min = root.value;
+        while (root.left !== null) {
+            min = root.left.value;
+            root = root.left;
+        }
+        return min;
+    }
+
+    find(value, root = this.root) {
+        if (root === null) {
+            return root;
+        }
+        if (value < root.value) {
+            return this.find(value, root.left);
+            
+        } else if (value > root.value) {
+            return this.find(value, root.right);
+        } else {
+            return root;
+        }
+    }
 
 }
 
