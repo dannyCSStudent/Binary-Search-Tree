@@ -2,5 +2,7 @@ const binaryTree = require('./binaryTree');
 
 const array = [1, 2, 3, 4, 5]
 const tree = new binaryTree(array); 
-tree.insert(6)
+console.log(tree.inorder())
+console.log(tree.preorder())
+console.log(tree.postorder())
 tree.prettyPrint(tree.root)

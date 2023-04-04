@@ -91,6 +91,72 @@ class BinaryTree {
         }
     }
 
+    queue = new Queue(Node);
+    queueArray = []
+
+    pushOut() { 
+        const innerArray = []
+        let n = this.queue.size();    
+        for (let i = 0; i < n; i++) {
+            const node = this.queue.dequeue(); 
+            if (node.left !== null) {
+                this.queue.enqueue(node.left)
+                innerArray.push(node.left.value)
+            }
+            if (node.right !== null) {
+                this.queue.enqueue(node.right)
+                innerArray.push(node.right.value)
+            }
+        }
+        if (this.queue.size() === 0) {
+            return;
+        }
+        this.queueArray.push(innerArray);
+        this.pushOut();
+    }
+
+    levelOrder(pushOut = this.root) {
+        if (this.root === null) {
+            return;
+        }
+        this.queue.enqueue(this.root);
+        this.queueArray.push([this.root.value]);
+        this.pushOut();
+        return this.queueArray;
+    }
+
+    inorder(root = this.root, arr = []) {
+        if (root === null) {
+            return;
+        }
+        this.inorder(root.left, arr)
+        arr.push(root.value);
+        this.inorder(root.right, arr)
+        return arr
+    }
+
+    preorder(root = this.root, arr = []) {
+        if (root === null) {
+            return;
+        }
+        arr.push(root.value);
+        this.inorder(root.left, arr)
+        this.inorder(root.right, arr)
+        return arr
+
+    }
+    
+    postorder(root = this.root, arr = []) {
+        if (root === null) {
+            return;
+        }
+        this.inorder(root.left, arr)
+        this.inorder(root.right, arr)
+        arr.push(root.value)
+        return arr
+    }
+
+
 }
 
 class Node {
@@ -116,6 +182,9 @@ class Queue {
         delete this.items[this.frontIndex];
         this.frontIndex++;
         return item;
+    }
+    size() {
+        return this.backIndex - this.frontIndex;
     }
 
 }

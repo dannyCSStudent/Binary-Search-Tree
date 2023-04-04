@@ -37,3 +37,42 @@ describe('#find(value, root = this.root)', () => {
         expect(tree.root.value).toBe(3)
     })
 })
+describe('#levelOrder(pushOut = this.root)', () => {
+    test('returns an array of arrays of each level in the tree', () => {
+        const array = [1, 2, 3, 4, 5]
+        const tree = new binaryTree(array);
+        const expected = [[3], [1, 4], [2, 5]]
+
+        expect(tree.levelOrder(array)).toMatchObject(expected)
+
+    })
+})
+describe('#inorder(root = this.root, arr = [])', () => {
+    test('left child nodes visited first, followed by the root, and then the right childs.', () => {
+        const array = [1, 2, 3, 4, 5]
+        const tree = new binaryTree(array);
+        const expected = [1, 2, 3, 4, 5]
+
+        expect(tree.inorder()).toMatchObject(expected)
+    })   
+})
+describe('#preorder(root = this.root, arr = [])', () => {
+    test('root node will be traversed first and then it will traverse the left subtree followed by the right subtree.', () => {
+        const array = [1, 2, 3, 4, 5]
+        const tree = new binaryTree(array);
+        const expected = [3, 1, 2, 4, 5]
+
+        expect(tree.preorder()).toMatchObject(expected)
+
+    })
+})
+describe('#postorder(root = this.root, arr = [])', () => {
+    test('traverse the left node, then right node, and then root.', () => {
+        const array = [1, 2, 3, 4, 5]
+        const tree = new binaryTree(array);
+        const expected = [1, 2, 4, 5, 3]
+
+        expect(tree.postorder()).toMatchObject(expected)
+
+    })
+})
