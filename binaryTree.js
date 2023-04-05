@@ -145,7 +145,7 @@ class BinaryTree {
         return arr
 
     }
-    
+
     postorder(root = this.root, arr = []) {
         if (root === null) {
             return;
@@ -154,6 +154,34 @@ class BinaryTree {
         this.inorder(root.right, arr)
         arr.push(root.value)
         return arr
+    }
+
+    height(root = this.root) {
+        if (root === null) {
+            return 0;
+        }
+        return Math.max(this.height(root.left), this.height(root.right)) + 1;
+    }
+
+    depth(x, root = this.root) {
+        if (root === null) {
+            return -1;
+        }
+        let dist = -1;
+        if ((root.value === x) || (dist = this.depth(x, root.left)) >= 0 || (dist = this.depth(x, root.right)) >= 0) {
+            return dist + 1;
+        }
+        return dist;
+    }
+
+    isBalanced(root = this.root) {
+        if(root == null)
+        return true
+
+        let lh = this.height(root.left)
+        let rh = this.height(root.right)
+        if (Math.abs(lh - rh) <= 1 && this.isBalanced(root.left)== true && this.isBalanced( root.right) == true)
+        return false
     }
 
 

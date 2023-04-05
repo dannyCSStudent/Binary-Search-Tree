@@ -63,7 +63,6 @@ describe('#preorder(root = this.root, arr = [])', () => {
         const expected = [3, 1, 2, 4, 5]
 
         expect(tree.preorder()).toMatchObject(expected)
-
     })
 })
 describe('#postorder(root = this.root, arr = [])', () => {
@@ -73,6 +72,29 @@ describe('#postorder(root = this.root, arr = [])', () => {
         const expected = [1, 2, 4, 5, 3]
 
         expect(tree.postorder()).toMatchObject(expected)
+    })
+})
+describe('#height(root = this.root)', () => {
+    test('returns the height of the tree.', () => {
+        const array = [1, 2, 3, 4, 5]
+        const tree = new binaryTree(array);
 
+        expect(tree.height()).toBe(3)
+    })
+})
+describe('#depth(x, root = this.root)', () => {
+    test('returns the depth of the provided node.', () => {
+        const array = [1, 2, 3, 4, 5]
+        const tree = new binaryTree(array);
+
+        expect(tree.depth(5)).toBe(2);
+    })
+})
+describe('#isBalanced(root = this.root)', () => {
+    test('returns true if the tree is balanced, false otherwise.', () => {
+        const array = [1, 2, 3, 4, 5];
+        const tree = new binaryTree(array);
+
+        expect(tree.isBalanced()).toBe(true);
     })
 })
