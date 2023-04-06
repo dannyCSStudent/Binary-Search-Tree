@@ -175,13 +175,30 @@ class BinaryTree {
     }
 
     isBalanced(root = this.root) {
-        if(root == null)
-        return true
-
+        if(root === null) {
+            return true
+        }
         let lh = this.height(root.left)
         let rh = this.height(root.right)
-        if (Math.abs(lh - rh) <= 1 && this.isBalanced(root.left)== true && this.isBalanced( root.right) == true)
-        return false
+        if (
+            Math.abs(lh - rh) <= 1 && 
+            this.isBalanced(root.left) === true && 
+            this.isBalanced(root.right) === true) {
+                return true;
+        }
+        return false;
+    }
+
+    myArray = []
+    rebalanced(root = this.root) {
+        if (root === null) {
+            return
+        }
+        this.myArray.push(root.value)
+        this.rebalanced(root.left)
+        this.rebalanced(root.right)
+        const rootNode = this.buildTree(this.myArray);
+        return rootNode;
     }
 
 

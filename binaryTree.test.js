@@ -98,3 +98,14 @@ describe('#isBalanced(root = this.root)', () => {
         expect(tree.isBalanced()).toBe(true);
     })
 })
+describe('#rebalanced(root = this.root)', () => {
+    test('takes the unbalances tree and rebalances it.', () => {
+        const array = [1, 2, 3, 4, 5];
+        const tree = new binaryTree(array);
+        tree.insert(6)
+        tree.insert(7)
+        tree.insert(8)
+
+        expect(tree.rebalanced().value).toBe(4)
+    })
+})
